@@ -85,7 +85,7 @@ Each of these has somewhat of a utility function baked in thus they are consider
 More on these later when we run through a few examples.
 
 
-## Starting Your First Bot 
+## Starting Your First Bot (The Hard Way)
 
 In order to start a new Bot, we need first decide what Bot We would like to run, we can get a good idea about installed bots by leveraging
 the botvox command ``botvox --list --items=strategy``
@@ -101,11 +101,8 @@ As you can see in above output there are already a few Bots that you can start u
 - SmartAccumulate.js
 - StrategyTemplate.js
 - SuperTrend.js
-- RSIStrategy.js
-- RSITrend.js
-- SmartAccumulate.js
-- StrategyTemplate.js
-- SuperTrend.js
+
+**We have more Bots in the pipeline but for this example this will enough.**
 
 For this Quick Start we will be learning how to start The SuperTrend Trading bot. 
 We can start this bot easily from the commandline in 2 ways.
@@ -121,13 +118,13 @@ Example Output:
 
 ![bv-strategy](https://github.com/bot-vox/botv-resources/blob/main/_resources/bv-strategy-usage.jpg?raw=true)
 
-``
+````
 --vox=VoxEngine --strategy=SuperTrend --backtest=true|false
 --exchange=bybit --symbol=ADAUSDT --timeframe=15m
 --amount=100  --profitPct=0.003 --fee=0.02
 --key=FAKE_KEY --secret=FAKE_SECRET --life=true|false --interval=10
 --sidePreference=long|short|biDirectional --period=7 --multiplier=3
-``
+````
 
 Keep in mind that you need to make sure the entire command is executed as one-liner the output above is just for readability and cosmetics!
 
@@ -137,7 +134,7 @@ so the command you would be executing on the commandline looks a little more lik
 botvox --vox=VoxEngine --strategy=SuperTrend --backtest=true|false --exchange=bybit --symbol=ADAUSDT --timeframe=15m --amount=100  --profitPct=0.003 --fee=0.02--key=FAKE_KEY --secret=FAKE_SECRET --life=true|false --interval=10 --sidePreference=long|short|biDirectional --period=7 --multiplier=3
 ```
 
-There is a lot of going on in this command so let's break down each commandline flag dow and explore what function they serve.
+There is a lot of going on in this command so let's break down each commandline flag and explore what function they serve.
 
 * ``--vox=VoxEngine``
 
@@ -204,4 +201,36 @@ There is a lot of going on in this command so let's break down each commandline 
 
   These are Strategy specific parameters if you are Familiar with the Super Trend Strategy and its implementation you know that it uses a period for averages and a multiplier for off setting bands.
   Those parameters are optional and default to 3 for the multiplier and 7 for the atr period. you can change them if you like.
- 
+
+
+## Starting Your First Bot (The Easy Way)
+
+The above is all very clunky and really not how we envisioned botvox user to get a satisfactory experience from botvox. So in order to make things a little more fun
+and easy to use we added configuration file support that allows you to create a json configuration file and pass it to the VoxEngine.
+
+To leverage this approach follow below steps!
+
+Create a Json file see example below
+
+```json
+ {
+  vox: 'VoxEngine',
+  strategy: './extensions/vox-strategies/SuperTrend',
+  backtest: true,
+  exchange: 'bybit',
+  symbol: 'ADAUSDT',
+  timeframe: '15m',
+  amount: 100,
+  profitPct: 0.003,
+  fee: 0.02,
+  key: 'FAKE_KEY',
+  secret: 'FAKE_KEY',
+  life: true,
+  interval: 10
+}
+```
+save it as ```botvox-VoxEngine-SuperTrend.json``` somewhere on your computer example ``users/USER_NAME/botvox/config/botvox-VoxEngine-SuperTrend.json``.
+
+Now you can run the ```VoxEngine-SuperTrend``` Bot by invoking it with this command:
+
+``botvox --config=users/USER_NAME/botvox/config/botvox-VoxEngine-SuperTrend.json``
