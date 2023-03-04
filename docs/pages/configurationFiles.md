@@ -10,7 +10,71 @@ To get a look and feel for how a configuration file would look like type: ```bot
 The Output is a List of Configuration examples for many if not all integrated 
 Strategy/Alert Bots plus some configuration for Utility Tools.
 
+<table>
+<tr>
+<th>ByBitMarketMaker</th>
+<th>SmartAccumulateVox</th>
+<th>Super Trend</th>
+</tr>
+<tr>
+<td>
 
+```json
+{
+  symbol: 'ADAUSDT',
+  vox: 'ByBitMarketMaker',
+  qty: 50,
+  fee: 0.01,
+  spread: 0.0009,
+  key: 'FAKE_KEY',
+  secret: 'FAKE_KEY',
+  life: true
+}
+```
+
+</td>
+<td>
+
+```json
+{
+  vox: 'SmartAccumulateVox',
+  exchange: 'bybit',
+  symbol: 'ADAUSDT',
+  accumulate: 'quote',
+  amount: 50,
+  profitPct: 0.1,
+  fee: 0.01,
+  key: 'FAKE_KEY',
+  secret: 'FAKE_KEY',
+  life: true
+}
+```
+</td>
+
+<td>
+
+```json
+{
+  vox: 'VoxEngine',
+  strategy: './extensions/vox-strategies/SuperTrend',
+  backtest: true,
+  exchange: 'bybit',
+  symbol: 'ADAUSDT',
+  timeframe: '15m',
+  amount: 100,
+  profitPct: 0.003,
+  fee: 0.02,
+  key: 'FAKE_KEY',
+  secret: 'JavaScript',
+  life: true,
+  interval: 10
+}
+```
+
+</td>
+
+</tr>
+</table>
 
 ```js
 [

@@ -1,11 +1,7 @@
 - Getting Started
     - [About](pages/about.md)
-    - [Introduction ](pages/intro.md) 
-
 - Bot Vox CLI
-    - [Quick Start](pages/quickstart.md)
-    - [Core Concepts](pages/coreConcepts.md)
-
+    - [Starting botvox](pages/quickstart.md)
 - Commandline Interface
   - [Commandline Arguments](pages/commandlineInterface.md)
   - [Starting Bots](pages/bots.md)
